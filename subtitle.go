@@ -1,6 +1,9 @@
 package go_srt
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 /*
  1
@@ -12,4 +15,8 @@ type Subtitle struct {
 	Start  time.Duration
 	End    time.Duration
 	Text   string
+}
+
+func (s *Subtitle) String() string {
+	return fmt.Sprintf("Number:%d, Start:%v, End:%v, Text:%s", s.Number, s.Start, s.End, s.Text)
 }

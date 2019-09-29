@@ -3,6 +3,7 @@ package go_srt
 import (
 	"github.com/Kyash/platform-api/helpers/errors"
 	"testing"
+	"time"
 )
 
 func TestParseTime(t *testing.T) {
@@ -45,6 +46,55 @@ func TestParseTime(t *testing.T) {
 			} else {
 				if *d.expected != actual.String() {
 					t.Errorf("In:%s, Expected:%s, Actual:%s", d.in, d.expected, actual.String())
+				}
+			}
+		})
+	}
+}
+
+func TestParseSubtitle(t *testing.T) {
+	var data = []struct {
+		in       string
+		expected *Subtitle
+		err      error
+	}{
+		{
+			`1
+00:00:01,000 --> 00:00:05,000
+Don-don donuts! Let's go nuts!`,
+			&Subtitle{Number: 1, Start: time.Duration(1000000000), End: time.Duration(5000000000), Text: "Don-don donuts! Let's go nuts!"},
+			nil,
+		},
+		{
+			`2
+00:00:01,000 --> 00:00:05,000
+Don-don donuts!
+Let's go nuts!`,
+			&Subtitle{Number: 2, Start: time.Duration(1000000000), End: time.Duration(5000000000), Text: "Don-don donuts!\nLet's go nuts!"},
+			nil,
+		},
+		{
+			`2
+00:00:01,000 -> 00:00:05,000
+Don-don donuts!
+Let's go nuts!`,
+			nil,
+			errors.New("invalid time format: 00:00:01,000 -> 00:00:05,000"),
+		},
+	}
+
+	for _, d := range data {
+		t.Run(d.in, func(t *testing.T) {
+			// given & when
+			actual, err := parseSubtitle(d.in)
+			// then
+			if err != nil {
+				if d.err.Error() != err.Error() {
+					t.Errorf("In:%s, Expected:%v, Actual:%v", d.in, d.err, err)
+				}
+			} else {
+				if d.expected.String() != actual.String() {
+					t.Errorf("In:%s, Expected:%s, Actual:%s", d.in, d.expected.String(), actual.String())
 				}
 			}
 		})

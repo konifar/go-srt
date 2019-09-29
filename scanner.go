@@ -29,11 +29,6 @@ func NewScanner(r io.Reader) *SubtitleScanner {
 	return &SubtitleScanner{s, Subtitle{}, nil}
 }
 
-/*
- * 1
- * 00:00:00,000 --> 00:00:00,000
- * Don-don donuts! Let's go nuts!
-**/
 func (s *SubtitleScanner) Scan() (wasRead bool) {
 	if s.scanner.Scan() {
 		subtitle, err := parseSubtitle(s.scanner.Text())
@@ -60,6 +55,11 @@ func (s *SubtitleScanner) Subtitle() Subtitle {
 	return s.nextSub
 }
 
+/*
+ * 1
+ * 00:00:00,000 --> 00:00:00,000
+ * Don-don donuts! Let's go nuts!
+**/
 func parseSubtitle(text string) (*Subtitle, error) {
 	var subtitle = &Subtitle{}
 
