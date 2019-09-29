@@ -131,7 +131,7 @@ func parseTime(input string) (time.Duration, error) {
 	matches := regex.FindStringSubmatch(input)
 
 	if len(matches) < 4 {
-		return time.Duration(0), errors.New("invalid time format")
+		return time.Duration(0), errors.New(fmt.Sprintf("invalid time format:%s", input))
 	}
 
 	hour, err := strconv.Atoi(matches[1])
