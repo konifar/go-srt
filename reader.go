@@ -4,6 +4,7 @@ import (
 	"github.com/pkg/errors"
 	"io"
 	"os"
+	"path/filepath"
 )
 
 func ReadSubtitles(r io.Reader) (subtitles []Subtitle, err error) {
@@ -20,7 +21,7 @@ func ReadSubtitles(r io.Reader) (subtitles []Subtitle, err error) {
 
 func ReadFile(fileName string) ([]Subtitle, error) {
 	var f *os.File
-	f, err := os.Open(fileName)
+	f, err := os.Open(filepath.Clean(fileName))
 	if err != nil {
 		err = errors.Wrapf(err, "failed to open file:%s", fileName)
 		return []Subtitle{}, err
