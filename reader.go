@@ -1,11 +1,15 @@
-package go_srt
+package gosrt
 
 import (
-	"github.com/pkg/errors"
 	"io"
+	"log"
 	"os"
+	"path/filepath"
+
+	"github.com/pkg/errors"
 )
 
+// ReadSubtitles reads from io.Reader
 func ReadSubtitles(r io.Reader) (subtitles []Subtitle, err error) {
 	scanner := NewScanner(r)
 	for scanner.Scan() {
@@ -18,14 +22,20 @@ func ReadSubtitles(r io.Reader) (subtitles []Subtitle, err error) {
 	return
 }
 
+// ReadFile reads from filename
 func ReadFile(fileName string) ([]Subtitle, error) {
 	var f *os.File
-	f, err := os.Open(fileName)
+	f, err := os.Open(filepath.Clean(fileName))
 	if err != nil {
 		err = errors.Wrapf(err, "failed to open file:%s", fileName)
 		return []Subtitle{}, err
 	}
-	defer f.Close()
+	defer func() {
+		err = f.Close()
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}()
 
 	return ReadSubtitles(f)
 }

@@ -1,15 +1,14 @@
-package go_srt
+package gosrt
 
 import (
 	"fmt"
 	"time"
 )
 
-/*
- 1
- 00:00:00,000 --> 00:00:00,000
- Don-don donuts! Let's go nuts!
-*/
+// Subtitle is the struct which is parsed from srt file
+// 1
+// 00:00:00,000 --> 00:00:00,000
+// Don-don donuts! Let's go nuts!
 type Subtitle struct {
 	Number int
 	Start  time.Duration

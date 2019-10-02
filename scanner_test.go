@@ -1,9 +1,10 @@
-package go_srt
+package gosrt
 
 import (
-	"github.com/Kyash/platform-api/helpers/errors"
 	"testing"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 func TestParseTime(t *testing.T) {

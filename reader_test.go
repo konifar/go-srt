@@ -1,8 +1,9 @@
-package go_srt
+package gosrt
 
 import (
-	"github.com/Kyash/platform-api/helpers/errors"
 	"testing"
+
+	"github.com/pkg/errors"
 )
 
 func TestReadFile(t *testing.T) {
