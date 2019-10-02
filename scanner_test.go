@@ -1,9 +1,10 @@
 package gosrt
 
 import (
-	"github.com/pkg/errors"
 	"testing"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 func TestParseTime(t *testing.T) {

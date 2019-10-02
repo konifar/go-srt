@@ -1,8 +1,9 @@
 package gosrt
 
 import (
-	"github.com/pkg/errors"
 	"testing"
+
+	"github.com/pkg/errors"
 )
 
 func TestReadFile(t *testing.T) {
