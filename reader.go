@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// Read from io.Reader
+// ReadSubtitles reads from io.Reader
 func ReadSubtitles(r io.Reader) (subtitles []Subtitle, err error) {
 	scanner := NewScanner(r)
 	for scanner.Scan() {
@@ -22,7 +22,7 @@ func ReadSubtitles(r io.Reader) (subtitles []Subtitle, err error) {
 	return
 }
 
-// Read from filename
+// ReadFile reads from filename
 func ReadFile(fileName string) ([]Subtitle, error) {
 	var f *os.File
 	f, err := os.Open(filepath.Clean(fileName))

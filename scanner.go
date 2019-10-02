@@ -22,7 +22,7 @@ type SubtitleScanner struct {
 	err     error
 }
 
-// Create new SubtitleScanner
+// SubtitleScanner creates new SubtitleScanner
 func NewScanner(r io.Reader) *SubtitleScanner {
 	s := bufio.NewScanner(r)
 	s.Split(scanDoubleNewline)
@@ -45,7 +45,7 @@ func (s *SubtitleScanner) Scan() (wasRead bool) {
 	return false
 }
 
-// Get error in scanner
+// Err gets error in scanner
 func (s *SubtitleScanner) Err() error {
 	if s.err != nil {
 		return s.err
@@ -53,7 +53,7 @@ func (s *SubtitleScanner) Err() error {
 	return s.scanner.Err()
 }
 
-// Get subtitle in scanner
+// Subtitle gets subtitle in scanner
 func (s *SubtitleScanner) Subtitle() Subtitle {
 	return s.nextSub
 }
