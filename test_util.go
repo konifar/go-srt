@@ -1,4 +1,4 @@
-package go_srt
+package gosrt
 
 func String(s string) *string {
 	p := s

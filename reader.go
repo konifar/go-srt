@@ -1,8 +1,9 @@
-package go_srt
+package gosrt
 
 import (
 	"github.com/pkg/errors"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -26,7 +27,12 @@ func ReadFile(fileName string) ([]Subtitle, error) {
 		err = errors.Wrapf(err, "failed to open file:%s", fileName)
 		return []Subtitle{}, err
 	}
-	defer f.Close()
+	defer func() {
+		err = f.Close()
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}()
 
 	return ReadSubtitles(f)
 }
