@@ -1,7 +1,7 @@
 package go_srt
 
 import (
-	"github.com/Kyash/platform-api/helpers/errors"
+	"github.com/pkg/errors"
 	"testing"
 	"time"
 )

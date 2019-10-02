@@ -3,7 +3,6 @@ package go_srt
 import (
 	"bufio"
 	"bytes"
-	"errors"
 	"fmt"
 	"io"
 	"regexp"
@@ -131,7 +130,7 @@ func parseTime(input string) (time.Duration, error) {
 	matches := regex.FindStringSubmatch(input)
 
 	if len(matches) < 4 {
-		return time.Duration(0), errors.New(fmt.Sprintf("invalid time format:%s", input))
+		return time.Duration(0), fmt.Errorf("invalid time format:%s", input)
 	}
 
 	hour, err := strconv.Atoi(matches[1])
