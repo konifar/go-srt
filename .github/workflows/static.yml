@@ -1,4 +1,4 @@
-name: static check
+name: static_check
 on: pull_request
 
 jobs:

@@ -1,5 +1,5 @@
 # go-srt
-[![](https://github.com/konifar/go-srt/workflows/CI/badge.svg)](https://github.com/konifar/go-srt/actions)
+[![](https://github.com/konifar/go-srt/workflows/static_check/badge.svg)](https://github.com/konifar/go-srt/actions)
 
 Parser for the simple SubRip (.srt) file.
 
