@@ -1,3 +1,5 @@
+# Edited by Robomotion
+
 # go-srt
 [![](https://github.com/konifar/go-srt/workflows/static_check/badge.svg)](https://github.com/konifar/go-srt/actions)
 
